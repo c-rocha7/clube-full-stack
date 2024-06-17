@@ -2,17 +2,20 @@
 
 namespace app\classes;
 
+use app\traits\ValidationFile;
+
 class Upload
 {
+	use ValidationFile;
+
 	private $file;
-	protected $newName;
 
 	public function __construct($file)
 	{
 		$this->file = $file;
 	}
 
-	private function extension()
+	protected function extension()
 	{
 		return pathinfo($this->file, PATHINFO_EXTENSION);
 	}

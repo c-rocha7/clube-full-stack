@@ -1,13 +1,13 @@
 <?php
 
 namespace app\classes;
-
 class UploadFoto extends Upload
 {
-	public $extensions = ['png', 'jpg'];
+	protected $extensions = ['png', 'jpg'];
 
 	public function upload()
 	{
-		return $this->newName;
+		// return "Gerou a foto {$this->rename()}";
+		return $this->test();
 	}
 }
