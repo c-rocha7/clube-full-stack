@@ -4,22 +4,22 @@ namespace app\classes;
 
 class Upload
 {
-	public $file;
-	public $newName;
+	private $file;
+	protected $newName;
 
 	public function __construct($file)
 	{
 		$this->file = $file;
 	}
 
-	public function extension()
+	private function extension()
 	{
 		return pathinfo($this->file, PATHINFO_EXTENSION);
 	}
 	
-	public function rename()
+	protected function rename()
 	{
 		$uniqId = uniqid(true);
-		$this->newName = $uniqId . '.' . $this->extension();
+		return $uniqId . '.' . $this->extension();
 	}
 }
