@@ -8,6 +8,11 @@ class UploadFoto
 	public $newName;
 	public $extensions = ['png', 'jpg'];
 
+	public function __construct($file)
+	{
+		$this->file = $file;
+	}
+
 	public function file($file)
 	{
 		$this->file = $file;
