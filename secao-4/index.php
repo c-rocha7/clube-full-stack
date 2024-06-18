@@ -2,18 +2,17 @@
 
 require "vendor/autoload.php";
 
-class Resize
+abstract class Login
 {
-	public function resize()
+	abstract public function logar();
+}
+
+class LoginUser extends Login
+{
+	public function logar()
 	{
-		return "resize";
+		
 	}
 }
 
-class UploadFoto
-{
-	public function upload(ValidateExtension $validate)
-	{
-		$resize = new Resize;
-	}
-}
+$login = new LoginUser();
