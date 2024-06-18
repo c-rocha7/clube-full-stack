@@ -2,41 +2,44 @@
 
 require "vendor/autoload.php";
 
-interface EmailInterface
+class ShoppingCart
 {
-	public function send();
-}
+	private $get = [];
+	private $products = [];
 
-class Swift implements EmailInterface
-{
-	public function send()
+	public function __toString()
 	{
-		return "enviando email com o swift";
-	}
-}
-
-class Mailer implements EmailInterface
-{
-	public function send()
-	{
-		return "enviando email com o phpmailer";
-	}
-}
-
-class SendEmail
-{
-	private $email;
-
-	public function __construct(EmailInterface $email)
-	{
-		$this->email = $email;
+		return "Chamando o toString";
 	}
 
-	public function send()
-	{
-		return $this->email->send();
-	}
+	// public function __call($name, $parameters)
+	// {
+	// 	$this->products[] = $parameters;
+	// }
+
+	// public function products()
+	// {
+	// 	return $this->products;
+	// }
+
+	// public function __set($name, $value)
+	// {
+	// 	if (!property_exists($this, $name)) {
+	// 		$this->get[$name][] = $value;
+	// 	}
+
+	// 	throw new \Exception("Essa propriedade já existe");
+	// }
+
+	// public function __get($name)
+	// {
+	// 	var_dump($this->get[$name]);
+	// }
 }
 
-$email = new SendEmail(new Mailer);
-echo $email->send();
+
+$shoppingCart = new ShoppingCart;
+echo $shoppingCart;
+// $shoppingCart->add('Monitor');
+// $shoppingCart->add('Mouse');
+// var_dump($shoppingCart->products('Monitor'));
