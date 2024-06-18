@@ -2,13 +2,35 @@
 
 require "vendor/autoload.php";
 
-use app\classes\UploadFoto;
+abstract class Email
+{
+	public function __construct()
+	{
+		# code...
+	}
 
-$upload = new UploadFoto('foto.png');
+	public static function who()
+	{
+		return "Cauã";
+	}
 
-// echo $upload->teste();
-// $upload->file('foto.png');
-// $upload->extension();
-// $upload->rename();
-$upload->validation();
-echo $upload->upload();
+	public static function send()
+	{
+		return static::who();
+	}
+}
+
+class SendEmail extends Email
+{
+	public function Teste()
+	{
+		return 'Teste';
+	}
+
+	public static function who()
+	{
+		return $this->Teste();
+	}
+}
+
+echo SendEmail::send();

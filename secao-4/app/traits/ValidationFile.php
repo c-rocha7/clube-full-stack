@@ -11,8 +11,8 @@ trait ValidationFile
 		}
 	}
 
-	protected function test()
-	{
-		return 'teste';
-	}
+	// protected function test()
+	// {
+	// 	return 'teste';
+	// }
 }
