@@ -2,44 +2,51 @@
 
 require "vendor/autoload.php";
 
-class ShoppingCart
+class Controller
 {
-	private $get = [];
-	private $products = [];
-
-	public function __toString()
+	public function make()
 	{
-		return "Chamando o toString";
+		if (!$this->controllerExist()) {
+			throw new ControllerNotExistException;
+		}
+
+		if (!$this->methodExists()) {
+			throw new MethodNotExistException;
+		}
+
+		return 'controller';
 	}
 
-	// public function __call($name, $parameters)
-	// {
-	// 	$this->products[] = $parameters;
-	// }
+	private function controllerExist()
+	{
+		return true;
+	}
 
-	// public function products()
-	// {
-	// 	return $this->products;
-	// }
-
-	// public function __set($name, $value)
-	// {
-	// 	if (!property_exists($this, $name)) {
-	// 		$this->get[$name][] = $value;
-	// 	}
-
-	// 	throw new \Exception("Essa propriedade já existe");
-	// }
-
-	// public function __get($name)
-	// {
-	// 	var_dump($this->get[$name]);
-	// }
+	private function methodExists()
+	{
+		return false;
+	}
 }
 
+class ControllerNotExistException extends Exception
+{
+	public function message()
+	{
+		return "Erro ao criar controller";
+	}
+}
 
-$shoppingCart = new ShoppingCart;
-echo $shoppingCart;
-// $shoppingCart->add('Monitor');
-// $shoppingCart->add('Mouse');
-// var_dump($shoppingCart->products('Monitor'));
+class MethodNotExistException extends Exception
+{
+	public function message()
+	{
+		return "Erro ao chamar método";
+	}
+}
+
+try {
+	$controller = new Controller;
+	$controller->make();
+} catch (Exception $e) {
+	var_dump($e->message());
+}
