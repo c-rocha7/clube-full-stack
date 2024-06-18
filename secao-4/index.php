@@ -2,8 +2,18 @@
 
 require "vendor/autoload.php";
 
-use app\classes\UploadFoto;
+class Resize
+{
+	public function resize()
+	{
+		return "resize";
+	}
+}
 
-$upload = new UploadFoto('foto.png');
-$upload->upload();
-echo $upload->newName();
+class UploadFoto
+{
+	public function upload(ValidateExtension $validate)
+	{
+		$resize = new Resize;
+	}
+}
