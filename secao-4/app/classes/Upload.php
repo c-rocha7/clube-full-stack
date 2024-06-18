@@ -9,6 +9,7 @@ abstract class Upload
 	use ValidationFile;
 
 	private $file;
+	protected $newName;
 
 	public function __construct($file)
 	{
@@ -23,6 +24,7 @@ abstract class Upload
 	protected function rename()
 	{
 		$uniqId = uniqid(true);
+		$this->newName = $uniqId . '.' . $this->extension();
 		return $uniqId . '.' . $this->extension();
 	}
 }
