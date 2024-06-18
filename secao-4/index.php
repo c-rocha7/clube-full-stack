@@ -2,17 +2,43 @@
 
 require "vendor/autoload.php";
 
-abstract class Login
+abstract class Model
 {
-	abstract public function logar();
+	public function all()
+	{
+		return 'todos registros';
+	}
+
+	public function find($id)
+	{
+		return "Encontrando o user com o id {$id}";
+	}
+
+	abstract public function create();
 }
 
-class LoginUser extends Login
+class User extends Model
 {
-	public function logar()
+	public function create()
 	{
 		
 	}
 }
 
-$login = new LoginUser();
+class Login
+{
+	private $model;
+
+	public function __construct(Model $model)
+	{
+		$this->model = $model;
+	}
+
+	public function logar()
+	{
+		return $this->model->find(12);
+	}
+}
+
+$login = new Login(new User);
+echo $login->logar();
