@@ -2,43 +2,41 @@
 
 require "vendor/autoload.php";
 
-abstract class Model
+interface EmailInterface
 {
-	public function all()
-	{
-		return 'todos registros';
-	}
-
-	public function find($id)
-	{
-		return "Encontrando o user com o id {$id}";
-	}
-
-	abstract public function create();
+	public function send();
 }
 
-class User extends Model
+class Swift implements EmailInterface
 {
-	public function create()
+	public function send()
 	{
-		
+		return "enviando email com o swift";
 	}
 }
 
-class Login
+class Mailer implements EmailInterface
 {
-	private $model;
-
-	public function __construct(Model $model)
+	public function send()
 	{
-		$this->model = $model;
-	}
-
-	public function logar()
-	{
-		return $this->model->find(12);
+		return "enviando email com o phpmailer";
 	}
 }
 
-$login = new Login(new User);
-echo $login->logar();
+class SendEmail
+{
+	private $email;
+
+	public function __construct(EmailInterface $email)
+	{
+		$this->email = $email;
+	}
+
+	public function send()
+	{
+		return $this->email->send();
+	}
+}
+
+$email = new SendEmail(new Mailer);
+echo $email->send();
